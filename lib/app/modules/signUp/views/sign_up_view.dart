@@ -52,7 +52,11 @@ class SignUpView extends GetView<SignUpController> {
                 return GetBuilder<SignUpController>(builder: (controller) {
                   bool isReady = controller.isReadyToSignUp;
                   return ElevatedButton(
-                    onPressed: isReady ? () {} : null,
+                    onPressed: isReady
+                        ? () {
+                            controller.onSignUp();
+                          }
+                        : null,
                     child: const Text(
                       "Sign in",
                     ),

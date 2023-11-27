@@ -11,8 +11,6 @@ import '../core/config/theme/color.dart';
 import '../core/config/theme/style.dart';
 
 class PopupDialog {
-  // AlertDialog
-  static void showAlertDialog(String title, String message) {}
   // SuccessDialog
   static void showSuccessDialog(String message) {
     var snackBar = SnackBar(
@@ -61,9 +59,9 @@ class PopupDialog {
                   // border radius
                   borderRadius: BorderRadius.circular(8.r),
                   // main body
-                  child: SpinKitWave(
+                  child: SpinKitFadingCircle(
                     color: kPrimaryColor, // You can customize the color
-                    size: 25.sp, // You can customize the size
+                    size: 43.sp, // You can customize the size
                   ),
                 ),
               ),
@@ -146,6 +144,75 @@ class PopupDialog {
                               )
                             ],
                           )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  static congratulationsDialog() {
+    return showDialog<void>(
+      // Context
+      context: Get.context!,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return Column(
+          // for horizontal minHeight
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // for ertical minWidth
+            Center(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Material(
+                    elevation: 2,
+                    // dialog color
+                    shadowColor: Colors.black12,
+                    // backgraund color
+                    color: kWhite,
+                    // border radius
+                    borderRadius: BorderRadius.circular(12.r),
+                    // main body
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 32.sp, vertical: 32.sp),
+                      child: Column(
+                        children: [
+                          // icon
+                          Image.asset(
+                            'assets/gif/Congratulations.gif',
+                            width: 128.w,
+                            height: 128.w,
+                          ),
+                          // title
+                          Text(
+                            "Congratulations!",
+                            style:
+                                kHeadlineMedium.copyWith(color: kPrimaryColor),
+                            textAlign: TextAlign.center,
+                          ),
+                          const Text(
+                            "Your new account has been created successfully.",
+                            textAlign: TextAlign.center,
+                          ),
+                          33.height,
+                          // btns
+                          SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                  child: const Text("Continue")))
                         ],
                       ),
                     ),

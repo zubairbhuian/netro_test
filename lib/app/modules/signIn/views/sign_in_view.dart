@@ -10,6 +10,7 @@ import 'package:netro_test/app/widgets/divider_text.dart';
 import 'package:netro_test/app/widgets/go_to_x.dart';
 import 'package:netro_test/app/modules/signUp/widgets/sign_up_form.dart';
 import 'package:netro_test/app/routes/app_pages.dart';
+import 'package:netro_test/app/widgets/popup_dialogs.dart';
 import '../controllers/sign_in_controller.dart';
 import '../widgets/sign_in_form.dart';
 
@@ -60,7 +61,12 @@ class SignInView extends GetView<SignInController> {
                 return GetBuilder<SignInController>(builder: (controller) {
                   bool isReady = controller.isReadyToSignin;
                   return ElevatedButton(
-                    onPressed:isReady? () {}:null,
+                    onPressed: isReady
+                        ? () {
+                            controller.onSignIn();
+                           
+                          }
+                        : null,
                     child: const Text(
                       "Sign in",
                     ),

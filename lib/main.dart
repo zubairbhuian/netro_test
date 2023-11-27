@@ -18,7 +18,7 @@ Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   //Native Splash
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await Future.delayed(const Duration(seconds: 3));
+  await Future.delayed(const Duration(seconds: 2));
   FlutterNativeSplash.remove();
 
   /// mobile orientation off
@@ -29,7 +29,6 @@ Future<void> main() async {
     statusBarColor: kPrimaryColor,
     statusBarIconBrightness: Brightness.dark,
   ));
-
   /// Shared Preferences
   await Preferences.init();
 
@@ -74,8 +73,7 @@ class MyApp extends StatelessWidget {
           initialBinding: BaseBinding(
             apiService: apiService,
           ),
-          // initialRoute: AppPages.INITIAL,
-          initialRoute: Routes.APPLICATION,
+          initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,
         );
       },

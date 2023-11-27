@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:get/get.dart';
+import 'package:netro_test/app/core/middleware/router_welcome.dart';
 
 import '../modules/application/bindings/application_binding.dart';
 import '../modules/application/views/application_view.dart';
@@ -21,6 +22,9 @@ class AppPages {
       name: _Paths.SIGN_IN,
       page: () => const SignInView(),
       binding: SignInBinding(),
+      middlewares: [
+        RouteWlcomMiddleware()
+      ]
     ),
     GetPage(
       name: _Paths.SIGN_UP,

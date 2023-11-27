@@ -1,5 +1,6 @@
 import 'package:netro_test/app/core/services/base/api_service.dart';
 import 'package:get/get.dart';
+import 'package:netro_test/app/routes/app_pages.dart';
 
 import '../base/preferences.dart';
 
@@ -20,6 +21,6 @@ class BaseController extends GetxController {
 
   void logout() {
     Preferences.clear();
-    // Get.offAllNamed(AppRoutes.login);
+    Get.offAllNamed(Routes.SIGN_IN);
   }
 }

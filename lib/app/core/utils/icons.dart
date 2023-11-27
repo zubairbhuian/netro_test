@@ -5,6 +5,8 @@ class IconsPath {
   static const String google = 'assets/icons/google.svg';
   static const String lock = 'assets/icons/lock.svg';
   static const String user = 'assets/icons/user.svg';
+  static const String userFilled = 'assets/icons/user_filled.svg';
+  static const String logout = 'assets/icons/logout.svg'; 
 }
 
 

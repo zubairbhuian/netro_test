@@ -3,8 +3,11 @@ import 'package:netro_test/app/core/config/theme/style.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:netro_test/app/core/services/controller/base_controller.dart';
+import 'package:netro_test/app/core/utils/icons.dart';
 import 'package:netro_test/app/core/utils/int_extensions.dart';
 import 'package:netro_test/app/widgets/network_img.dart';
+import 'package:netro_test/app/widgets/popup_dialogs.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool isPrimary;
@@ -44,136 +47,43 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // padding: const EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-          color: kWhite, // Adjust the background color of the AppBar
-          boxShadow: isShadow || !isPrimary ? [kAppbarShadow] : []),
-      child: AppBar(
+        // padding: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+            color: kWhite, // Adjust the background color of the AppBar
+            boxShadow: isShadow ? [kAppbarShadow] : []),
+        child: AppBar(
           automaticallyImplyLeading: false,
           titleSpacing: 10,
           elevation: 0,
           centerTitle: centerTitle,
-          leadingWidth: isPrimary ?40: 40,
-          backgroundColor: kWhite,
+          leadingWidth: 80,
+          backgroundColor: const Color(0xffF2F8FD),
           foregroundColor: kTextColor,
-          titleTextStyle: kTitleLarge,
+          titleTextStyle: kTitleLarge.copyWith(color: const Color(0xff2F2F2F)),
           // appbar leading
-          leading: isBackBtnShow
-              ? isPrimary
-                  // brand logo
-                  ? SvgPicture.asset('assets/logo/mr_expert.svg')
-                      .marginOnly(left: 20)
-                  // back icon
-                  : GestureDetector(
-                      onTap: onLeading ?? () => Get.back(),
-                      child: Container(
-                        alignment: Alignment.centerRight,
-                        child: const Icon(
-                          Icons.arrow_back_ios,
-                          size: 20,
-                        ),
-                      ),
-                    )
-              : null,
+          leading: Center(
+            child: CircleAvatar(
+              radius: 24,
+              backgroundColor: kWhite,
+              child: SvgPicture.asset(IconsPath.userFilled),
+            ),
+          ),
           // appbar title
           title: isPrimary ? const SizedBox.shrink() : title,
-          // appbar actions
-          // ****** isPrimary          
-          flexibleSpace:isPrimary? ClipPath(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [kPrimaryColor, kPrimaryColor],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomRight)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  // frist row
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Profile',
-                        style: kTitleMedium.copyWith(color: kWhite),
-                      ),
-                      const Icon(
-                        Icons.settings,
-                        color: kWhite,
-                      )
-                    ],
-                  ),
-                  // profile row
-                  20.height,
-                  Row(
-                    children: [
-                      Expanded(
-                          child: Row(
-                        children: [
-                          Badge(
-                            backgroundColor: kSuccessColor,
-                            label: const CircleAvatar(
-                              radius: 4,
-                              backgroundColor: kWhite,
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: const Color(0xffCCC4FF)),
-                              child: const NetworkImg(
-                                "",
-                                errUrl: "assets/images/default_user.png",
-                                width: 48,
-                                height: 48,
-                              ),
-                            ),
-                          ),
-                          10.width,
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Welcome back ",
-                                  style: kBodySmall.copyWith(color: kWhite)),
-                              Text("Johen Markes",
-                                  style:
-                                      kHeadlineMedium.copyWith(color: kWhite)),
-                            ],
-                          )
-                        ],
-                      )),
-                      const Badge(
-                        backgroundColor: kSuccessColor,
-                        smallSize: 8,
-                        child: Icon(
-                          Icons.notifications_outlined,
-                          color: kWhite,
-                        ),
-                        // label: ,
-                      )
-                    ],
-                  )
-                ],
+          // appbar actions),
+          actions: [
+            GestureDetector(
+              onTap: () {
+                 PopupDialog.logOutDialog();
+              },
+              child: CircleAvatar(
+                radius: 24,
+                backgroundColor: kWhite,
+                child: SvgPicture.asset(IconsPath.logout),
               ),
             ),
-          ):null),
-    );
-  }
-
-  Widget _button(String label, {required void Function()? onPressed}) {
-    return Center(
-      child: ElevatedButton.icon(
-        onPressed: onPressed,
-        icon: const Icon(Icons.add),
-        label: FittedBox(child: Text(label)),
-        style: ElevatedButton.styleFrom(
-            backgroundColor: kPrimaryColor,
-            foregroundColor: kWhite,
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-            textStyle:
-                const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-      ),
-    ).marginOnly(right: 10);
+            20.width,
+          ],
+        ));
   }
 }
