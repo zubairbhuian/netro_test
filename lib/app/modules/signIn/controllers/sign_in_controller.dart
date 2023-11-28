@@ -16,16 +16,15 @@ class SignInController extends GetxController {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  TextEditingController mailController =
-      TextEditingController(text: "demo@gmail.com");
-  TextEditingController passwordController =
-      TextEditingController(text: "12345678");
+  TextEditingController mailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   onSignIn() async {
     final FormData formData = FormData.fromMap({
       "email": mailController.text.trim(),
       "password": passwordController.text.trim(),
     });
+
     try {
       PopupDialog.showLoadingDialog();
       BaseModel res = await BaseController.to.apiService
@@ -37,7 +36,7 @@ class SignInController extends GetxController {
         Get.offAllNamed(Routes.APPLICATION);
         PopupDialog.closeLoadingDialog();
         Future.delayed(const Duration(seconds: 2), () {
-           PopupDialog.congratulationsDialog();
+          PopupDialog.congratulationsDialog();
         });
       } else if (res.statusCode == 404) {
         PopupDialog.showErrorMessage(res.data["message"][0]);
@@ -60,9 +59,4 @@ class SignInController extends GetxController {
     }
   }
 
-  @override
-  void onInit() {
-    onReadyToSignin();
-    super.onInit();
-  }
 }

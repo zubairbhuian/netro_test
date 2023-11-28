@@ -8,7 +8,7 @@ class Buttons {
       style: ElevatedButton.styleFrom(
     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
     side: null,
-    elevation: 2,
+    elevation: 0,
     foregroundColor: kWhite,
     backgroundColor: kPrimaryColor,
     disabledForegroundColor: kDisabledTextColor,

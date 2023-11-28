@@ -9,6 +9,7 @@ import 'package:netro_test/app/widgets/divider_text.dart';
 import 'package:netro_test/app/widgets/go_to_x.dart';
 import 'package:netro_test/app/modules/signUp/widgets/sign_up_form.dart';
 import 'package:netro_test/app/routes/app_pages.dart';
+import 'package:netro_test/app/widgets/popup_dialogs.dart';
 
 import '../controllers/sign_up_controller.dart';
 
@@ -72,7 +73,9 @@ class SignUpView extends GetView<SignUpController> {
               children: [
                 Expanded(
                   child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        PopupDialog.showErrorMessage('This service is not available right now');
+                      },
                       style: ElevatedButton.styleFrom(
                         textStyle: kBodyLarge,
                         backgroundColor: kWhite,
@@ -88,7 +91,9 @@ class SignUpView extends GetView<SignUpController> {
                 16.width,
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      PopupDialog.showErrorMessage('This service is not available right now');
+                    },
                     icon: SvgPicture.asset(IconsPath.facebook),
                     label: const Text("Facebook"),
                     style: ElevatedButton.styleFrom(

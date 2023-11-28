@@ -16,13 +16,10 @@ class SignUpController extends GetxController {
   bool isReadyToSignUp = false;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  TextEditingController nameController = TextEditingController(text: "demo");
-  TextEditingController mailController =
-      TextEditingController(text: "demo@gmail.com");
-  TextEditingController passwordController =
-      TextEditingController(text: "123456789");
-  TextEditingController confirmPasswordController =
-      TextEditingController(text: "123456789");
+  TextEditingController nameController = TextEditingController();
+  TextEditingController mailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   String otp = '';
 
@@ -98,11 +95,5 @@ class SignUpController extends GetxController {
       isReadyToSignUp = false;
       update();
     }
-  }
-
-  @override
-  void onInit() {
-    onReadyToSignUp();
-    super.onInit();
   }
 }

@@ -5,10 +5,8 @@ import 'package:netro_test/app/core/config/theme/color.dart';
 import 'package:netro_test/app/core/config/theme/style.dart';
 import 'package:netro_test/app/core/utils/icons.dart';
 import 'package:netro_test/app/core/utils/int_extensions.dart';
-import 'package:netro_test/app/core/utils/logger.dart';
 import 'package:netro_test/app/widgets/divider_text.dart';
 import 'package:netro_test/app/widgets/go_to_x.dart';
-import 'package:netro_test/app/modules/signUp/widgets/sign_up_form.dart';
 import 'package:netro_test/app/routes/app_pages.dart';
 import 'package:netro_test/app/widgets/popup_dialogs.dart';
 import '../controllers/sign_in_controller.dart';
@@ -64,7 +62,6 @@ class SignInView extends GetView<SignInController> {
                     onPressed: isReady
                         ? () {
                             controller.onSignIn();
-                           
                           }
                         : null,
                     child: const Text(
@@ -82,7 +79,9 @@ class SignInView extends GetView<SignInController> {
               children: [
                 Expanded(
                   child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        PopupDialog.showErrorMessage('This service is not available right now');
+                      },
                       style: ElevatedButton.styleFrom(
                         textStyle: kBodyLarge,
                         backgroundColor: kWhite,
@@ -98,7 +97,9 @@ class SignInView extends GetView<SignInController> {
                 16.width,
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      PopupDialog.showErrorMessage('This service is not available right now');
+                    },
                     icon: SvgPicture.asset(IconsPath.facebook),
                     label: const Text("Facebook"),
                     style: ElevatedButton.styleFrom(

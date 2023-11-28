@@ -34,15 +34,7 @@ Future<void> main() async {
 
   /// Initialize the dio
   final dio = Dio();
-
-  //! Disable SSL certificate validation (for testing purposes only)
-  // ignore: deprecated_member_use
-  // (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-  //     (HttpClient dioClient) {
-  //   dioClient.badCertificateCallback =
-  //       ((X509Certificate cert, String host, int port) => true);
-  //   return dioClient;
-  // };
+  
   // Initialize the dio instance
   dio.interceptors.add(DioInterceptor());
 

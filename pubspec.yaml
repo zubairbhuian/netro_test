@@ -28,6 +28,10 @@ flutter_native_splash:
   image: assets/images/travelo.png
   background_image: "assets/images/travelo_bg.png"
 
+  android_12:
+    image: assets/images/travelo.png
+    background_image: "assets/images/travelo_bg.png"
+    
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:

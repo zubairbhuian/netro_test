@@ -1,21 +1,14 @@
 import 'package:netro_test/app/core/config/theme/color.dart';
 import 'package:netro_test/app/core/config/theme/style.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:netro_test/app/core/services/controller/base_controller.dart';
 import 'package:netro_test/app/core/utils/icons.dart';
 import 'package:netro_test/app/core/utils/int_extensions.dart';
-import 'package:netro_test/app/widgets/network_img.dart';
 import 'package:netro_test/app/widgets/popup_dialogs.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final bool isPrimary;
-  final bool isExtraBtn;
-  final bool isBackBtnShow;
   final Widget? title;
   final VoidCallback? onLeading;
-  final PreferredSizeWidget? bottom;
   final double? preferredHeight;
   final List<Widget>? actions;
   final bool isShadow;
@@ -27,14 +20,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   const CustomAppBar(
       {super.key,
-      this.isPrimary = false,
-      this.isExtraBtn = false,
-      this.isBackBtnShow = true,
       this.isShadow = false,
       this.centerTitle = true,
       this.title,
       this.onLeading,
-      this.bottom,
       this.preferredHeight,
       this.actions,
       this.hasActionBtn = false,
@@ -42,18 +31,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.actionBtnText = 'Text'});
 // Specify the desired height of the AppBar
   @override
-  Size get preferredSize => Size.fromHeight(preferredHeight ?? 56.0);
+  Size get preferredSize => Size.fromHeight(preferredHeight ?? 66.0);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        // padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
-            color: kWhite, // Adjust the background color of the AppBar
+            color: const Color(
+                0xffF2F8FD), // Adjust the background color of the AppBar
             boxShadow: isShadow ? [kAppbarShadow] : []),
         child: AppBar(
           automaticallyImplyLeading: false,
-          titleSpacing: 10,
+          titleSpacing: 0,
           elevation: 0,
           centerTitle: centerTitle,
           leadingWidth: 80,
@@ -69,12 +59,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
           // appbar title
-          title: isPrimary ? const SizedBox.shrink() : title,
+          title: title,
           // appbar actions),
           actions: [
             GestureDetector(
               onTap: () {
-                 PopupDialog.logOutDialog();
+                PopupDialog.logOutDialog();
               },
               child: CircleAvatar(
                 radius: 24,
